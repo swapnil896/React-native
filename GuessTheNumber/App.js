@@ -1,22 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import TitleView from './components/TitleView';
-import GamingView from './components/GamingView';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { useState } from 'react';
+import GuessNumberView from './components/GuessNumberView/GuessNumberView';
+import OpponentGuessView from './components/OpponentGuessView/OpponentGuessView';
 
 export default function App() {
+  const [showOpponentsGuessView, setShowOpponentsGuessView] = useState(false);
+  const [guessedAns, setGuessedAns] = useState('');
+
+  const resetActionHandler = () => {
+
+  }
+
+  const confirmActionHandler = () => {
+    const guessedAns = getRandomIntInRange(1, 99);
+    setGuessedAns(guessedAns.toString());
+    setShowOpponentsGuessView(true);
+  }
+
+  function getRandomIntInRange(min, max) {
+    min = Math.ceil(min); // Ensure min is an integer
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   return (
-    <View style={styles.container}>
-      <TitleView />
-      <GamingView />
-    </View>
+    <ImageBackground source={require('./assets/images/background.png')} style={styles.image} >
+      {showOpponentsGuessView ?
+        <OpponentGuessView guessedAnswer={guessedAns} /> :
+        <GuessNumberView
+          onResetPress={resetActionHandler}
+          onConfirmPress={confirmActionHandler}
+        />}
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  image: {
+    flex: 1
+  }
 });

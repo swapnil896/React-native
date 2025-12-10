@@ -3,11 +3,11 @@ import { Pressable, StyleSheet, View, Text } from "react-native";
 const ActionButton = (props) => {
 
     const actionButtonHandler = () => {
-        console.log(props.title + " button pressed");
+        props.onPress();
     }
 
     return (
-        <Pressable onPress={actionButtonHandler}>
+        <Pressable onPress={actionButtonHandler} >
             <View style={styles.containerView}>
                 <Text style={styles.textView}>{props.title}</Text>
             </View>
