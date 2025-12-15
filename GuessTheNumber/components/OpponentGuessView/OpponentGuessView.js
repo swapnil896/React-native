@@ -6,7 +6,7 @@ import GuessItem from "./GuessItem";
 const OpponentGuessView = (props) => {
     return (
         <View style={styles.containerView}>
-            <TitleView title="Opponent's Guess" />
+            <TitleView>Opponent's Guess</TitleView>
             <View style={styles.answerView}>
                 <Text style={styles.answerText}>{props.guessedAnswer}</Text>
             </View>

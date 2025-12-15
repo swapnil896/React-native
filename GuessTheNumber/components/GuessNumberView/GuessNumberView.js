@@ -14,7 +14,7 @@ const GuessNumberView = (props) => {
 
     return (
         <View style={styles.container}>
-            <TitleView title='Guess My Number' />
+            <TitleView>Guess My Number</TitleView>
             <GamingView onResetPress={resetActionHandler} onConfirmPress={confirmActionHandler} />
         </View>
     );

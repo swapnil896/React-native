@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 const TitleView = (props) => {
     return (
         <View style={styles.containerView}>
-            <Text style={styles.textView}>{props.title}</Text>
+            <Text style={styles.textView}>{props.children}</Text>
         </View>
     );
 };
