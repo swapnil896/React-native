@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 
 const NumberTextInput = (props) => {
 
@@ -7,28 +7,29 @@ const NumberTextInput = (props) => {
     }
 
     return (
-        <View style={styles.containerView}>
-            <TextInput
-                inputMode='numeric'
-                style={styles.textInputView}
-                value={props.textValue}
-                onChangeText={textChangeHandler}
-            >
-            </TextInput>
-        </View>
+        <TextInput
+            keyboardType='numeric'
+            maxLength={2}
+            style={styles.textInputView}
+            value={props.textValue}
+            onChangeText={textChangeHandler}
+        >
+        </TextInput>
     );
 };
 
 export default NumberTextInput;
 
 const styles = StyleSheet.create({
-    containerView: {
-        borderBottomWidth: 2,
-        borderBottomColor: '#e6b800',
-        margin: 8,
-        width: 25
-    },
     textInputView: {
         color: '#e6b800',
+        borderBottomWidth: 2,
+        borderBottomColor: '#e6b800',
+        width: 50,
+        height: 60,
+        margin: 8,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 32
     },
 });

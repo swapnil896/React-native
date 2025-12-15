@@ -7,11 +7,12 @@ const ActionButton = (props) => {
     }
 
     return (
-        <Pressable onPress={actionButtonHandler} >
-            <View style={styles.containerView}>
+        <View style={styles.containerView}>
+            <Pressable onPress={actionButtonHandler} android_ripple={{ color: '#ffcc00' }} >
                 <Text style={styles.textView}>{props.title}</Text>
-            </View>
-        </Pressable>
+            </Pressable>
+        </View>
+
     );
 };
 

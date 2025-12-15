@@ -2,6 +2,7 @@ import { StyleSheet, ImageBackground } from 'react-native';
 import { useState } from 'react';
 import GuessNumberView from './components/GuessNumberView/GuessNumberView';
 import OpponentGuessView from './components/OpponentGuessView/OpponentGuessView';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
   const [showOpponentsGuessView, setShowOpponentsGuessView] = useState(false);
@@ -24,19 +25,33 @@ export default function App() {
   }
 
   return (
-    <ImageBackground source={require('./assets/images/background.png')} style={styles.image} >
-      {showOpponentsGuessView ?
-        <OpponentGuessView guessedAnswer={guessedAns} /> :
-        <GuessNumberView
-          onResetPress={resetActionHandler}
-          onConfirmPress={confirmActionHandler}
-        />}
-    </ImageBackground>
+    <LinearGradient colors={['#80002a', '#e6b800']}
+      style={styles.rootScreen}
+    >
+      <ImageBackground
+        source={require('./assets/images/background.png')}
+        style={styles.rootScreen}
+        resizeMode='cover'
+        imageStyle={styles.backgroundImage}
+      >
+
+        {showOpponentsGuessView ?
+          <OpponentGuessView guessedAnswer={guessedAns} /> :
+          <GuessNumberView
+            onResetPress={resetActionHandler}
+            onConfirmPress={confirmActionHandler}
+          />}
+
+      </ImageBackground >
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  image: {
+  backgroundImage: {
+    opacity: 0.20,
+  },
+  rootScreen: {
     flex: 1
   }
 });

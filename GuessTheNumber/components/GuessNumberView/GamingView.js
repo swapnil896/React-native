@@ -48,7 +48,12 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         backgroundColor: '#80002a',
         alignItems: 'center',
-        borderRadius: 20
+        borderRadius: 20,
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 6
     },
     textView: {
         padding: 20,
