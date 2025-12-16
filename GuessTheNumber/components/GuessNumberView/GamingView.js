@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Alert } from "react-native";
 import ActionButton from "../ActionButton";
 import NumberTextInput from "./NumberTextInput";
 import { useState } from "react";
@@ -20,7 +20,17 @@ const GamingView = (props) => {
         if (isValidNumber(enteredNumber)) {
             props.onConfirmPress();
         } else {
-            console.log('invalid')
+            Alert.alert(
+                'Invalid Number!',
+                'Please enter a number between 1 and 99',
+                [
+                    {
+                        text: 'Okay',
+                        style: 'default',
+                        onPress: resetActionHandler
+                    }
+                ]
+            )
         }
     }
 

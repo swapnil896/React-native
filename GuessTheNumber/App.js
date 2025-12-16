@@ -24,6 +24,15 @@ export default function App() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  let screen = <GuessNumberView
+    onResetPress={resetActionHandler}
+    onConfirmPress={confirmActionHandler}
+  />
+
+  if (showOpponentsGuessView) {
+    screen = <OpponentGuessView guessedAnswer={guessedAns} />
+  }
+
   return (
     <LinearGradient colors={['#80002a', '#e6b800']}
       style={styles.rootScreen}
@@ -34,14 +43,7 @@ export default function App() {
         resizeMode='cover'
         imageStyle={styles.backgroundImage}
       >
-
-        {showOpponentsGuessView ?
-          <OpponentGuessView guessedAnswer={guessedAns} /> :
-          <GuessNumberView
-            onResetPress={resetActionHandler}
-            onConfirmPress={confirmActionHandler}
-          />}
-
+        {screen}
       </ImageBackground >
     </LinearGradient>
   );
