@@ -8,8 +8,8 @@ const GuessNumberView = (props) => {
         props.onResetPress();
     }
 
-    const confirmActionHandler = () => {
-        props.onConfirmPress();
+    const confirmActionHandler = (enteredNumber) => {
+        props.onConfirmPress(enteredNumber);
     }
 
     return (

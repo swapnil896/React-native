@@ -3,25 +3,19 @@ import { useState } from 'react';
 import GuessNumberView from './components/GuessNumberView/GuessNumberView';
 import OpponentGuessView from './components/OpponentGuessView/OpponentGuessView';
 import { LinearGradient } from 'expo-linear-gradient';
+import SafeView from './components/SafeView';
 
 export default function App() {
   const [showOpponentsGuessView, setShowOpponentsGuessView] = useState(false);
-  const [guessedAns, setGuessedAns] = useState('');
+  const [enteredNumber, setEnteredNumber] = useState(null);
 
   const resetActionHandler = () => {
 
   }
 
-  const confirmActionHandler = () => {
-    const guessedAns = getRandomIntInRange(1, 99);
-    setGuessedAns(guessedAns.toString());
+  const confirmActionHandler = (enteredNumber) => {
+    setEnteredNumber(enteredNumber);
     setShowOpponentsGuessView(true);
-  }
-
-  function getRandomIntInRange(min, max) {
-    min = Math.ceil(min); // Ensure min is an integer
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   let screen = <GuessNumberView
@@ -30,7 +24,7 @@ export default function App() {
   />
 
   if (showOpponentsGuessView) {
-    screen = <OpponentGuessView guessedAnswer={guessedAns} />
+    screen = <OpponentGuessView enteredNumber={enteredNumber} />
   }
 
   return (
@@ -43,7 +37,9 @@ export default function App() {
         resizeMode='cover'
         imageStyle={styles.backgroundImage}
       >
-        {screen}
+        <SafeView>
+          {screen}
+        </SafeView>
       </ImageBackground >
     </LinearGradient>
   );

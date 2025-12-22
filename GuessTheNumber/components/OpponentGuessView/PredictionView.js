@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import ActionButton from "../ActionButton";
+import Colors from "../../constants/Colors";
 
 const PredictionView = (props) => {
 
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     containerView: {
         width: '90%',
         paddingBottom: 20,
-        backgroundColor: '#80002a',
+        backgroundColor: Colors.primary700,
         alignItems: 'center',
         borderRadius: 20,
         margin: 50

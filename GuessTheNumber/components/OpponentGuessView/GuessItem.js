@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
+import Colors from "../../constants/Colors";
 
 const GuessItem = (props) => {
     return (
@@ -16,9 +17,9 @@ export default GuessItem;
 const styles = StyleSheet.create({
     containerView: {
         width: '80%',
-        backgroundColor: '#e6b800',
+        backgroundColor: Colors.secondary,
         borderWidth: 1,
-        borderColor: '#000000',
+        borderColor: Colors.black,
         borderRadius: 30,
         padding: 10,
     },

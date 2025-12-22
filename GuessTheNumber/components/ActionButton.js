@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, View, Text } from "react-native";
+import Colors from "../constants/Colors";
 
 const ActionButton = (props) => {
 
@@ -19,13 +20,13 @@ export default ActionButton;
 
 const styles = StyleSheet.create({
     containerView: {
-        backgroundColor: '#cc0044',
+        backgroundColor: Colors.primary500,
         paddingVertical: 10,
         paddingHorizontal: 50,
         margin: 8,
         borderRadius: 20
     },
     textView: {
-        color: '#ffffff'
+        color: Colors.white
     }
 });

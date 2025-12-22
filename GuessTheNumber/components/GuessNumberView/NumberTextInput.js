@@ -1,4 +1,5 @@
 import { StyleSheet, TextInput } from "react-native";
+import Colors from "../../constants/Colors";
 
 const NumberTextInput = (props) => {
 
@@ -22,9 +23,9 @@ export default NumberTextInput;
 
 const styles = StyleSheet.create({
     textInputView: {
-        color: '#e6b800',
+        color: Colors.secondary,
         borderBottomWidth: 2,
-        borderBottomColor: '#e6b800',
+        borderBottomColor: Colors.secondary,
         width: 50,
         height: 60,
         margin: 8,

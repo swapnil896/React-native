@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, Alert } from "react-native";
 import ActionButton from "../ActionButton";
 import NumberTextInput from "./NumberTextInput";
 import { useState } from "react";
+import Colors from "../../constants/Colors";
 
 const GamingView = (props) => {
     const [number, setNumber] = useState('');
@@ -18,7 +19,7 @@ const GamingView = (props) => {
     const confirmActionHandler = () => {
         const enteredNumber = parseInt(number);
         if (isValidNumber(enteredNumber)) {
-            props.onConfirmPress();
+            props.onConfirmPress(enteredNumber);
         } else {
             Alert.alert(
                 'Invalid Number!',
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     containerView: {
         width: '90%',
         paddingBottom: 20,
-        backgroundColor: '#80002a',
+        backgroundColor: Colors.primary700,
         alignItems: 'center',
         borderRadius: 20,
         elevation: 4,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     },
     textView: {
         padding: 20,
-        color: '#e6b800',
+        color: Colors.secondary,
         fontSize: 20,
         fontWeight: '600'
     },
