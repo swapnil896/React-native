@@ -5,11 +5,11 @@ import Colors from "../../constants/Colors";
 const PredictionView = (props) => {
 
     const lowerActionHandler = () => {
-
+        props.onTapLower();
     }
 
     const higherActionHandler = () => {
-
+        props.onTapHigher();
     }
 
     function getRandomIntInRange(min, max) {
