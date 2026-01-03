@@ -5,17 +5,10 @@ import GuessItem from "./GuessItem";
 import Colors from "../../constants/Colors";
 import { useState } from "react";
 
-const OpponentGuessView = (props) => {
+const OpponentGuessView = ({ enteredNumber, onSuccessfulGuess }) => {
     const initialGuess = getRandomIntInRange(1, 99);
     const [currentNumber, setCurrentNumber] = useState(initialGuess);
-    const [listData, setListData] = useState(
-        [
-            {
-                id: 1,
-                score: currentNumber
-            }
-        ]
-    );
+    const [listData, setListData] = useState([]);
 
     function getRandomIntInRange(min, max) {
         min = Math.ceil(min); // Ensure min is an integer
@@ -24,40 +17,51 @@ const OpponentGuessView = (props) => {
     }
 
     const lowerActionHandler = () => {
-        const lowerNumber = getRandomIntInRange(parseInt(props.enteredNumber), currentNumber);
+        const lowerNumber = getRandomIntInRange(parseInt(enteredNumber), currentNumber);
         setCurrentNumber(lowerNumber.toString());
-        setListData((currentListData) => [
-            ...currentListData,
-            {
-                id: currentListData.length + 1,
-                score: currentNumber
-            }
-        ])
+        if (lowerNumber === parseInt(enteredNumber)) {
+            // show Success view
+            onSuccessfulGuess();
+        } else {
+            setListData((currentListData) => [
+                ...currentListData,
+                {
+                    id: currentListData.length + 1,
+                    score: currentNumber
+                }
+            ])
+        }
     }
 
     const higherActionHandler = () => {
-        const higherNumber = getRandomIntInRange(currentNumber, parseInt(props.enteredNumber));
+        const higherNumber = getRandomIntInRange(currentNumber, parseInt(enteredNumber));
         setCurrentNumber(higherNumber.toString());
-        setListData((currentListData) => [
-            ...currentListData,
-            {
-                id: currentListData.length + 1,
-                score: currentNumber
-            }
-        ]);
+
+        if (higherNumber === parseInt(enteredNumber)) {
+            // Show Success view
+            onSuccessfulGuess();
+        } else {
+            setListData((currentListData) => [
+                ...currentListData,
+                {
+                    id: currentListData.length + 1,
+                    score: currentNumber
+                }
+            ]);
+        }
     }
 
     return (
         <View style={styles.containerView}>
             <TitleView>Opponent's Guess</TitleView>
             <View style={styles.answerView}>
-                <Text style={styles.answerText}>{currentNumber.toString() + ' / ' + props.enteredNumber}</Text>
+                <Text style={styles.answerText}>{currentNumber.toString() + ' / ' + enteredNumber}</Text>
             </View>
             <PredictionView onTapLower={lowerActionHandler} onTapHigher={higherActionHandler} />
-            <View>
+            <View style={styles.listContainerView}>
                 <FlatList
                     data={listData}
-                    renderItem={({ item }) => <GuessItem indexNumber={item.id} guessedNumber={item.score.toString()} />}
+                    renderItem={({ item }) => <GuessItem indexNumber={item.id} guessedNumber={item.score} />}
                     keyExtractor={item => item.id}
                 />
             </View>
@@ -71,7 +75,8 @@ const styles = StyleSheet.create({
     containerView: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: 70
+        paddingTop: 70,
+        paddingBottom: 20
     },
     answerView: {
         borderWidth: 3,
@@ -85,5 +90,9 @@ const styles = StyleSheet.create({
     answerText: {
         fontSize: 60,
         color: Colors.secondary,
+    },
+    listContainerView: {
+        width: '90%',
+        paddingBottom: 20
     }
 });

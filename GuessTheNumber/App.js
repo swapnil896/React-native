@@ -2,11 +2,13 @@ import { StyleSheet, ImageBackground } from 'react-native';
 import { useState } from 'react';
 import GuessNumberView from './components/GuessNumberView/GuessNumberView';
 import OpponentGuessView from './components/OpponentGuessView/OpponentGuessView';
+import SuccessView from './components/Success/SuccessView';
 import { LinearGradient } from 'expo-linear-gradient';
 import SafeView from './components/SafeView';
 
 export default function App() {
   const [showOpponentsGuessView, setShowOpponentsGuessView] = useState(false);
+  const [showSuccessView, setShowSuccessView] = useState(false);
   const [enteredNumber, setEnteredNumber] = useState(null);
 
   const resetActionHandler = () => {
@@ -18,13 +20,29 @@ export default function App() {
     setShowOpponentsGuessView(true);
   }
 
+  const handleSuccessView = () => {
+    setShowOpponentsGuessView(false);
+    setShowSuccessView(true);
+  }
+
+  const handleRestartGame = () => {
+    setShowSuccessView(false);
+  }
+
   let screen = <GuessNumberView
     onResetPress={resetActionHandler}
     onConfirmPress={confirmActionHandler}
   />
 
   if (showOpponentsGuessView) {
-    screen = <OpponentGuessView enteredNumber={enteredNumber} />
+    screen = <OpponentGuessView
+      enteredNumber={enteredNumber}
+      onSuccessfulGuess={handleSuccessView}
+    />
+  }
+
+  if (showSuccessView) {
+    screen = <SuccessView onRestartTap={handleRestartGame} />
   }
 
   return (
